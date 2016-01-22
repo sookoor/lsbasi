@@ -1,2 +1,2 @@
-# Source code for the series Let's Build A Simple Interpreter
-Let's Build A Simple Interpreter
+Source code for the series **Let's Build A Simple Interpreter**
+
