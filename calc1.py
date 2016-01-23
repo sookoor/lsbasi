@@ -39,6 +39,12 @@ class Interpreter(object):
     def error(self):
         raise Exception('Error parsing input')
 
+    def get_number(self, text, current_char):
+        while self.pos + 1 < len(text) and text[self.pos + 1].isdigit():
+            current_char += text[self.pos + 1]
+            self.pos += 1
+        return current_char
+
     def get_next_token(self):
         """Lexical analyzer (also known as scanner or tokenizer)
 
@@ -62,11 +68,9 @@ class Interpreter(object):
         # index to point to the next character after the digit,
         # and return the INTEGER token
         if current_char.isdigit():
-            self.pos += 1
-            while self.pos < len(text) and text[self.pos].isdigit():
-                current_char += text[self.pos]
-                self.pos += 1
+            current_char = self.get_number(text, current_char)
             token = Token(INTEGER, int(current_char))
+            self.pos += 1
             return token
 
         if current_char == '+':
