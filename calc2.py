@@ -1,7 +1,8 @@
 # Token types
 # EOF (end-of-file) token is used to indicate that
 # there is no more input left for lexical analysis
-INTEGER, PLUS, MINUS, TIMES, EOF = 'INTEGER', 'PLUS', 'MINUS', 'TIMES', 'EOF'
+INTEGER, PLUS, MINUS, TIMES, DIVIDE, EOF = \
+        'INTEGER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EOF'
 
 class Token(object):
     def __init__(self, type, value):
@@ -85,6 +86,10 @@ class Interpreter(object):
                 self.advance()
                 return Token(TIMES, '*')
 
+            if self.current_char == '/':
+                self.advance()
+                return Token(DIVIDE, '/')
+
             self.error()
 
         return Token(EOF, None)
@@ -105,6 +110,7 @@ class Interpreter(object):
         expr -> INTEGER PLUS INTEGER
         expr -> INTEGER MINUS INTEGER
         expr -> INTEGER TIMES INTEGER
+        expr -> INTEGER DIVIDE INTEGER
         """
         # set current token to the first token taken from the input
         self.current_token = self.get_next_token()
@@ -119,8 +125,10 @@ class Interpreter(object):
             self.eat(PLUS)
         elif op.type == MINUS:
             self.eat(MINUS)
-        else:
+        elif op.type == TIMES:
             self.eat(TIMES)
+        else:
+            self.eat(DIVIDE)
 
         # we expect the current token to be an integer
         right = self.current_token
@@ -128,8 +136,8 @@ class Interpreter(object):
         # after the above call the self.current_token is set to
         # EOF token
         
-        # at this point either the INTEGER PLUS INTEGER or
-        # the INTEGER MINUS INTEGER sequence of tokens
+        # at this point either the INTEGER PLUS/MINUS INTEGER or
+        # the INTEGER TIMES/DIVIDE INTEGER sequence of tokens
         # has been successfully found and the method can just
         # return the result of adding or subtracting two integers,
         # thus effectively interpreting client input
@@ -137,8 +145,10 @@ class Interpreter(object):
             result = left.value + right.value
         elif op.type == MINUS:
             result = left.value - right.value
-        else:
+        elif op.type == TIMES:
             result = left.value * right.value
+        else:
+            result = left.value / right.value
         return result
 
 def main():
