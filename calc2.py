@@ -149,7 +149,11 @@ class Interpreter(object):
             result = left.value * right.value
         else:
             result = left.value / right.value
-        return result
+        if self.pos > len(self.text) - 1: 
+            return result
+        text = str(result) + self.current_token.value + self.text[self.pos:]
+        interpreter = Interpreter(text)
+        return interpreter.expr()
 
 def main():
     while True:
