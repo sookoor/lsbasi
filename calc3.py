@@ -2,13 +2,14 @@
 #
 # EOF (end-of-file) token is used to indicate that
 # there is no more input left for lexical analysis
-INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
+INTEGER, PLUS, MINUS, TIMES, DIVIDE, EOF = \
+        'INTEGER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EOF'
 
 class Token(object):
     def __init__(self, type, value):
         # token type: INTEGER, PLUS, MINUS, or EOF
         self.type = type
-        # token value: non-negative integer value, '+', '-', or None
+        # token value: non-negative integer value, '+', '-', '*', '/', or None
         self.value = value
 
     def __str__(self):
@@ -85,6 +86,14 @@ class Interpreter(object):
                 self.advance()
                 return Token(MINUS, '-')
 
+            if self.current_char == '*':
+                self.advance()
+                return Token(TIMES, '*')
+
+            if self.current_char == '/':
+                self.advance()
+                return Token(DIVIDE, '/')
+
             self.error()
 
         return Token(EOF, None)
@@ -114,7 +123,7 @@ class Interpreter(object):
         self.current_token = self.get_next_token()
 
         result = self.term()
-        while self.current_token.type in (PLUS, MINUS):
+        while self.current_token.type in (PLUS, MINUS, TIMES, DIVIDE):
             token = self.current_token
             if token.type == PLUS:
                 self.eat(PLUS)
@@ -122,6 +131,12 @@ class Interpreter(object):
             elif token.type == MINUS:
                 self.eat(MINUS)
                 result = result - self.term()
+            elif token.type == TIMES:
+                self.eat(TIMES)
+                result = result * self.term()
+            elif token.type == DIVIDE:
+                self.eat(DIVIDE)
+                result = result / self.term()
 
         return result
 
