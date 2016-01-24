@@ -79,12 +79,10 @@ The part of an interpreter, or compiler, that performs syntax analysis</p></li>
 
 <ol>
 <li>Write a grammar that describes arithmetic expressions containing any number of +, -, *, or / operators<br>
-</li>
-</ol>
-
-<p>expr   : expr((ADD|SUB)expr)*  | term<br>
+expr   : expr((ADD|SUB)expr)*  | term<br>
 term   : term((MULT|DIV)term)* | factor<br>
-factor : INTEGER</p>
+factor : INTEGER</li>
+</ol>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sookoor">sookoor</a></p>
