@@ -74,6 +74,17 @@ The part of an interpreter, or compiler, that performs syntax analysis</p></li>
 </ol>
 
 <p><img src="http://i.imgur.com/VbOQevz.jpg" alt="Syntax diagram for multiplication and division"></p>
+
+<p><strong>Part 4</strong></p>
+
+<ol>
+<li>Write a grammar that describes arithmetic expressions containing any number of +, -, *, or / operators<br>
+</li>
+</ol>
+
+<p>expr   : expr((ADD|SUB)expr)*  | term
+term   : term((MULT|DIV)term)* | factor
+factor : INTEGER</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sookoor">sookoor</a></p>
