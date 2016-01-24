@@ -77,6 +77,60 @@ The part of an interpreter, or compiler, that performs syntax analysis</p></li>
 
 <p><strong>Part 4</strong></p>
 
+<p>Keeping in mind the grammar from today’s article, answer the following questions, referring to the picture below as needed:</p>
+
+<p>expr   : factor ( ( MULT | DIV ) factor ) *
+factor : INTEGER </p>
+
+<ol>
+<li>What is a context-free grammar (grammar)?<br>
+</li>
+</ol>
+
+<p>A widely used notation for specifying the syntax of a programming language</p>
+
+<ol>
+<li>How many rules / productions does the grammar have?<br>
+</li>
+</ol>
+
+<p>Two rules</p>
+
+<ol>
+<li>What is a terminal? (Identify all terminals in the picture)<br>
+</li>
+</ol>
+
+<p>Tokens like MUL, DIV, and INTEGER</p>
+
+<ol>
+<li>What is a non-terminal? (Identify all non-terminals in the picture)<br>
+</li>
+</ol>
+
+<p>Variables like <em>expr</em> and <em>factor</em></p>
+
+<ol>
+<li>What is a head of a rule? (Identify all heads / left-hand sides in the picture)<br>
+</li>
+</ol>
+
+<p>Non-terminal on the left-hand side of the colon, e.g. <em>expr</em> and <em>factor</em></p>
+
+<ol>
+<li>What is a body of the rule? (Identify all bodies / right-hand sides in the picture)<br>
+</li>
+</ol>
+
+<p>A sequence of terminals, and/or non-terminals on the right-hand side of the colon, e.g. factor ( ( MULT | DIV ) factor ) * and INTEGER</p>
+
+<ol>
+<li>What is the start symbol of a grammar?<br>
+</li>
+</ol>
+
+<p>The non-terminal symbol on the left side of the first rule</p>
+
 <ol>
 <li>Write a grammar that describes arithmetic expressions containing any number of +, -, *, or / operators<br>
 expr   : expr ( ( ADD | SUB ) expr ) *  | term<br>
