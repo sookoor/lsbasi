@@ -129,7 +129,7 @@ class Interpreter(object):
         """factor : INTEGER"""
         token = self.current_token
 
-        if str(token.value).isdigit():
+        if token.type == INTEGER:
             self.eat(INTEGER)
             return token.value
 
