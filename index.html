@@ -102,6 +102,25 @@ expr   : term ( ( ADD | SUB ) term ) *<br>
 term   : factor ( ( MULT | DIV ) factor ) *<br>
 factor : INTEGER</p></li>
 </ol>
+
+<p><strong>Part5</strong>
+1. What does it mean for an operator to be <em>left-associative</em>?  </p>
+
+<p>When an operand like 3 in the expression 7 + 3 + 1 has plus signs on both sides, we need a convention to decide which operator applies to 3. Is it the one to the left or the one to the right of the operand 3? The operator + <em>associates</em> to the left because an operand that has plus signs on both sides belongs to the operator to its left and so we say that the operator + is <em>left-associative</em>. That’s why 7 + 3 + 1 is equivalent to (7 + 3) + 1 by the <em>associativity</em> convention.</p>
+
+<ol>
+<li>Are operators + and - <em>left-associative</em> or <em>right-associative</em>? What about * and / ?<br>
+</li>
+</ol>
+
+<p>They are all left-associative</p>
+
+<ol>
+<li>Does operator + have <em>higher precedence</em> than operator * ?<br>
+</li>
+</ol>
+
+<p>No</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/sookoor">sookoor</a></p>
